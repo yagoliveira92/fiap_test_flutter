@@ -1,0 +1,46 @@
+appId: com.example.fiap_test_flutter
+---
+- launchApp:
+    clearState: true
+
+# Validação inicial: tela de login carregada
+- assertVisible: "FIAP Pós-Graduação"
+- assertVisible: "Entrar"
+
+# -------------------------------------------------------------
+# Cenário 1: Validação de e-mail sem formato válido (sem '@')
+# -------------------------------------------------------------
+- tapOn:
+    text: ".*email.*|E-mail"
+- eraseText
+- inputText: "emailinvalido.fiap.com.br"
+
+- tapOn:
+    text: ".*Senha.*|••••••"
+- eraseText
+- inputText: "123456"
+
+- hideKeyboard
+- tapOn: "Entrar"
+
+# Valida se a mensagem de validação de e-mail apareceu
+- assertVisible: "E-mail incorreto"
+
+# -------------------------------------------------------------
+# Cenário 2: Validação de credenciais incorretas
+# -------------------------------------------------------------
+- tapOn:
+    text: ".*email.*|E-mail"
+- eraseText
+- inputText: "pos@fiap.com.br"
+
+- tapOn:
+    text: ".*Senha.*|••••••"
+- eraseText
+- inputText: "senha_errada"
+
+- hideKeyboard
+- tapOn: "Entrar"
+
+# Valida se a mensagem de credenciais inválidas apareceu
+- assertVisible: "Credenciais inválidas"

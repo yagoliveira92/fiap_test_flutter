@@ -1,0 +1,37 @@
+appId: com.example.fiap_test_flutter
+---
+- launchApp:
+    clearState: true
+
+# Validação inicial: tela de login carregada
+- assertVisible: "FIAP Pós-Graduação"
+- assertVisible: "Entrar"
+
+# Preenchimento de e-mail com credenciais válidas
+- tapOn:
+    text: ".*email.*|E-mail"
+- eraseText
+- inputText: "pos@fiap.com.br"
+
+# Preenchimento de senha
+- tapOn:
+    text: ".*Senha.*|••••••"
+- eraseText
+- inputText: "123456"
+
+# Oculta o teclado para evitar sobreposição
+- hideKeyboard
+
+# Execução do login
+- tapOn: "Entrar"
+
+# Validação de sucesso: acesso à Dashboard
+- assertVisible: "Dashboard de Cursos"
+- assertVisible: "Bem-vindo à Pós-Graduação FIAP!"
+
+# Validação do fluxo de logout
+- tapOn: "Sair"
+
+# Confirma retorno à tela de login
+- assertVisible: "FIAP Pós-Graduação"
+- assertVisible: "Entrar"
