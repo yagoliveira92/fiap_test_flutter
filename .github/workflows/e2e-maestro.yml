@@ -46,13 +46,17 @@ jobs:
       - name: Run Maestro E2E Tests in Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 33
-          target: google_apis
+          api-level: 29
+          target: default
           arch: x86_64
-          profile: pixel_6
-          enable-hw-accel: true
-          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          profile: pixel
+          force-avd-creation: false
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -no-audio -no-boot-anim -camera-back none -camera-front none
           script: |
+            # Garante que o ADB reconhece o dispositivo antes de prosseguir
+            adb wait-for-device
+            
             # Instala o APK gerado no emulador
             adb install build/app/outputs/flutter-apk/app-debug.apk
             
