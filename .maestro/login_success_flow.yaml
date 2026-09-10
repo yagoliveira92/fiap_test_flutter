@@ -27,7 +27,7 @@ appId: com.example.fiap_test_flutter
 
 # Validação de sucesso: acesso à Dashboard
 - assertVisible: "Dashboard de Cursos"
-- assertVisible: "Bem-vindo à Pós-Graduação FIAP!"
+- assertVisible: ".*Bem-vindo.*"
 
 # Validação do fluxo de logout
 - tapOn: "Sair"

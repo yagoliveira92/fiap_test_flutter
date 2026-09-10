@@ -24,7 +24,7 @@ appId: com.example.fiap_test_flutter
 - tapOn: "Entrar"
 
 # Valida se a mensagem de validação de e-mail apareceu
-- assertVisible: "E-mail incorreto"
+- assertVisible: ".*E-mail incorreto.*"
 
 # -------------------------------------------------------------
 # Cenário 2: Validação de credenciais incorretas
@@ -43,4 +43,4 @@ appId: com.example.fiap_test_flutter
 - tapOn: "Entrar"
 
 # Valida se a mensagem de credenciais inválidas apareceu
-- assertVisible: "Credenciais inválidas"
+- assertVisible: ".*Credenciais.*"

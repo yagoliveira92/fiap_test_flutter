@@ -126,10 +126,10 @@ Essa interface abrirá automaticamente no seu navegador padrão e permite inspec
 
 A esteira automatizada está configurada em [`.github/workflows/e2e-maestro.yml`](.github/workflows/e2e-maestro.yml).
 
-Ela é acionada a cada `push` ou `pull request` nas branches `main` e `master`:
-1. **Configuração de Ambiente**: Instala Java 17, Flutter Stable e dependências do projeto.
+Ela é acionada a cada `push` ou `pull request` nas branches `main`, `master` e `with-tests`:
+1. **Configuração de Ambiente**: Instala Java 17, Flutter Stable e dependências do projeto no runner `ubuntu-latest`.
 2. **Qualidade & Validação**: Executa os testes unitários e de widgets (`flutter test`).
 3. **Build Android**: Gera o APK debug (`flutter build apk --debug`).
 4. **Instalação do Maestro**: Faz o download e configuração do binário do Maestro CLI no runner.
-5. **Emulador Android**: Inicia um emulador Android com aceleração de hardware (HVF no macOS Runner), instala o APK e executa os fluxos E2E.
+5. **Emulador Android**: Inicia um emulador Android com aceleração de hardware KVM habilitada, instala o APK e executa os fluxos E2E.
 6. **Artefatos**: Em caso de falha, salva capturas de tela e relatórios do Maestro como artefatos da pipeline.

@@ -2,15 +2,15 @@ name: E2E Tests with Maestro
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main, master, with-tests ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main, master, with-tests ]
   workflow_dispatch:
 
 jobs:
   maestro-e2e:
     name: Run Maestro E2E Tests on Android
-    runs-on: macos-14 # macOS runners suportam virtualização de hardware (HVF) para emulador Android rápido
+    runs-on: ubuntu-latest
     timeout-minutes: 30
 
     steps:
@@ -50,6 +50,8 @@ jobs:
           target: google_apis
           arch: x86_64
           profile: pixel_6
+          enable-hw-accel: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           script: |
             # Instala o APK gerado no emulador
             adb install build/app/outputs/flutter-apk/app-debug.apk
