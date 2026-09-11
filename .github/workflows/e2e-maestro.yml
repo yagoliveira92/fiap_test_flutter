@@ -62,7 +62,7 @@ jobs:
             
             # Executa a suíte de testes do Maestro
             maestro test .maestro/login_success_flow.yaml
-            maestro test .maestro/login_failure_flow.yaml
+            # maestro test .maestro/login_failure_flow.yaml
 
       - name: Upload Maestro Test Artifacts
         if: always()

@@ -15,14 +15,15 @@ void main() {
   }
 
   group('LoginForm Widget Tests', () {
+
     testWidgets('deve renderizar os campos de email, senha e botão de login', (
       tester,
     ) async {
       await tester.pumpWidget(createWidgetUnderTest());
 
-      expect(find.byKey(const Key('input_email')), findsOneWidget);
-      expect(find.byKey(const Key('input_password')), findsOneWidget);
-      expect(find.byKey(const Key('btn_login')), findsOneWidget);
+      expect(find.byKey(Key('input_email')), findsOneWidget);
+      expect(find.byKey(Key('input_password')), findsOneWidget);
+      expect(find.byKey(Key('btn_login')), findsOneWidget);
       expect(find.text('Entrar'), findsOneWidget);
     });
 
