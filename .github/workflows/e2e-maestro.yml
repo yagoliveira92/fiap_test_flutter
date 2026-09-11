@@ -10,7 +10,7 @@ on:
 jobs:
   maestro-e2e:
     name: Run Maestro E2E Tests on Android
-    runs-on: ubuntu-latest
+    runs-on: macos-15-intel
     timeout-minutes: 30
 
     steps:
@@ -46,23 +46,19 @@ jobs:
       - name: Run Maestro E2E Tests in Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
-          target: default
+          api-level: 33
+          target: google_apis
           arch: x86_64
-          profile: pixel
-          force-avd-creation: false
-          disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -no-audio -no-boot-anim -camera-back none -camera-front none
+          profile: pixel_6
+          enable-hw-accel: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
           script: |
-            # Garante que o ADB reconhece o dispositivo antes de prosseguir
-            adb wait-for-device
-            
             # Instala o APK gerado no emulador
             adb install build/app/outputs/flutter-apk/app-debug.apk
             
             # Executa a suíte de testes do Maestro
             maestro test .maestro/login_success_flow.yaml
-            # maestro test .maestro/login_failure_flow.yaml
+            maestro test .maestro/login_failure_flow.yaml
 
       - name: Upload Maestro Test Artifacts
         if: always()
